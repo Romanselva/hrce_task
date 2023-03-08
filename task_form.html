@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.js"></script>
+  <style>
+        .error{
+            color: red;
+        }
+    </style>
+</head>
+<body class="bg-info">
+    <p class="h4 text-uppercase text-dark text-center mt-2">House Rental Registration form</p>
+    <div class="container mt-4 card bg-light p-3">
+        <form action="" id="myform">
+        <div class="d-flex justify-content-around row">
+            <div class="col-sm-4">
+                <div class="container  mb-2">
+                    <label for="fname" class="form-label">Enter first name</label>
+                    <input type="text" placeholder="Enter your name" class="form-control required" name="fname" id="fname">
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="container  mb-2">
+                    <label for="lname" class="form-label">Enter last name</label>
+                    <input type="text" class="form-control" name="lname" id="lname">
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="container  mb-2">
+                    <label for="email" class="form-label">Enter your email</label>
+                    <input type="email" class="form-control" name="email" id="email">
+                </div>
+            </div>
+        
+    </div>
+
+    <div class="container row mt-4">
+        <div class="col-sm-4">
+            <div class="container tmode">
+                <label for="tenent_mode" class="form-label d-block">Tenant Mode: </label>
+                <input type="radio" class="form-check-input" name="t_mode" id="bachelor"><span>Bachelor</span>
+                <input type="radio" class="form-check-input" name="t_mode" id="family"><span>family</span>
+                <span class=""></span>
+    
+            </div>
+        </div>
+        <div class="col-sm-4 justify-content-center">
+            <div class="container ">
+                <label for="" class="form-label">Family Details</label>
+                <input type="text"name="t_detail" id="t_detail" class="form-control" disabled>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="container form-outline">
+                <label for="" class="form-label">Room type:BHK</label>
+                <select class="form-select" name="room_type">
+                    <option value="">--Select--</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+        
+    </div> 
+
+    <div class="container row mt-3">
+        <div class="col-sm-4">
+            <div class="container">
+            <label for=""class="form-label d-block">Household items</label>
+            <input type="checkbox" class="form-check-input" name="AC" id="Ac">AC 
+            <input type="checkbox" class="form-check-input" name="fridge" id="fridge">Refridgerator 
+            <input type="checkbox" class="form-check-input" name="washing" id="washing">Washing machine
+              </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="container work">
+                <label for="" class="form-label d-block">Are you working?</label>
+                <input type="radio" class="form-check-input"  name="duty" id="work"><span>Yes</span>
+                <input type="radio" class="form-check-input"  name="duty" id="study"><span>Studying</span>
+            </div>
+           
+        </div>
+        <div class="col-sm-4">
+            <div class="container" id="work_desc">
+                <label for="" class="form-label">Work Description</label>
+                <input type="text" name="work_dtl" id="work_dtl" class="form-control" disabled>
+            </div>
+        </div>
+    </div>
+
+    <div class="container row mt-3">
+        <div class="col-sm-4">
+            <label for="" class="form-label">Phone number</label>
+            <input type="text"name="phone" id="phone" maxlength="10" class="form-control required">
+        </div>
+        <div class="col-sm-4">
+            <label for="" class="form-label">Zip code</label>
+            <input type="text"name="code" id="code" maxlength="6" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="" class="form-label">Current Address</label>
+             <textarea name="address" id="address" cols="40" rows="3" class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <button class="btn btn-dark" type="submit">Submit</button>
+    </div>
+</form>
+    </div>
+</body>
+<script>
+        $(document).ready(function(){
+
+    var s=$('#fname').attr('placeholder');
+    alert(s);
+        });
+    $(document).on('keyup blur', '#phone,#code', function() {
+    $(this).val($(this).val().replace(/[^0-9]/g, ''));
+    });  
+    $('#work').click(function(){
+        $('#work_desc').show();
+        $("#work_dtl").prop('disabled', false);
+
+    });
+    $('#study').click(function(){
+        $('#work_desc').hide();
+        $("#work_dtl").removeAttr('disabled');
+    });
+    $('#family').click(function(){
+       $("#t_detail").prop('disabled', false);
+
+    });
+    $('#bachelor').click(function(){
+        $("#t_detail").prop('disabled', true);
+         $('#t_detail').val('');
+
+    });
+
+    $(document).ready(function(){
+        jQuery.validator.addMethod('name_rule', function (value, element) {
+		if (/^[a-zA-Z ]+$/.test(value)) {
+			return true;
+		} else {
+			return false;
+		};
+	});
+    jQuery.validator.addMethod('email_rule', function (value, element) {
+		if (/^([a-zA-Z0-9_\-\.]+)\+?([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(value)) {
+			return true;
+		} else {
+			return false;
+		};
+	});
+    jQuery.validator.addMethod('phone_rule',function(value,element){
+        if(/^[6-9]{1}[0-9]{9}$/.test(value)){
+            return true;
+        } else {
+			return false;
+		};
+    });
+    
+        jQuery.validator.addMethod('phone_re', function (value, element) {
+            if (/^[6666666666]$/.test(value)||/^[7777777777]$/.test(value)||/^[8888888888]$/.test(value)||/^[9999999999]$/.test(value))
+             {
+			return true;
+		} else {
+			return false;
+		};
+	});
+       
+        $('#myform').validate({
+            rules:{
+                fname:{required:true,
+                        name_rule:true
+                      },
+                lname:{
+                    required:true,
+                    name_rule:true
+                },      
+                email:{required:true,
+                       email_rule:true
+                       },
+                phone:{
+                    required:true,
+                    phone_rule:true,
+                    phone_re:true
+                },
+                t_mode:{
+                    required:true
+                },
+                room_type:{
+                    required:true
+                },
+                duty:{
+                    required:true
+                },
+                code:{
+                    required:true,
+                },
+                demo:{
+                    required:true
+                },
+
+                mark:'required'
+            },
+            messages:{
+                       fname:{required:'Please enter firstname',
+                              name_rule:'Name should be only alphabets'
+                            },
+                        lname:{required:'Please enter Lastname',
+                              name_rule:'Name should be only alphabets'
+                            },    
+                        email:{required:'please enter email address',
+                             email_rule:'please enter valid email'
+
+                        },
+                        phone:{
+                            required:'please enter phone number',
+                            phone_rule:'please enter valid phone number',
+                            phone_re:'Repeated numbers not allowed'
+                        },
+                        t_mode:{
+                            required:'please choose tenant mode'
+                        },
+                        duty:{
+                            required:'select this field'
+                        }
+            },
+            errorPlacement: function(error,element) 
+        {
+            if ( element.is(":radio") ) 
+            {
+                error.appendTo(element.parents('.work , .tmode') );
+            
+            }
+            else 
+            { // This is the default behavior 
+                error.insertAfter(element);
+      
+            }
+         }
+            
+        });
+    });
+</script>
+<script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+</html>
